@@ -1,0 +1,39 @@
+{% extends 'blog/basic.html '%}
+{% block title%}
+Blog
+{% endblock %}
+{% block css %}
+<style>
+  .card{
+    display: inline-block;
+  }
+  .col-md-4 img{
+    max-height:200px;
+    width:100%;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="row my-4">
+  {% for blogs in blog %}
+<div class="card my-4" style="max-width: 540px;">
+    <div class="row no-gutters">
+      <div class="col-md-4 my-4">
+        <img src="/media/{{ blogs.img }}" class="card-img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ blogs.blogTitle }}</h5>
+          <p class="card-text">{{ blogs.blogText|slice:'0:100' }}.......<span><a href="/blog/blogpost/{{blogs.blog_id}}">Read More</a></span></p>
+          <p class="card-text"><small class="text-muted">{{ blogs.blogDate }}</small></p>
+          
+        </div>
+      </div>
+    </div>
+  </div> 
+  {% endfor %} 
+  </div>
+</div>
+{% endblock %}
